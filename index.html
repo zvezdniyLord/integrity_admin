@@ -7,19 +7,27 @@
     <title>Document</title>
 </head>
 <body>
-
+    <div class="form-changer-block">
+        <form id="form-changer">
+            <input class="input-changer" type="text">
+            <input class="input-changer" type="text">
+            <input class="input-changer" type="text">
+            <button class="btn-change" type="submit">Изменить</button>
+        </form>
+        <span class="close-form-change">X</span>
+    </div>
 <div class="news">
     <p class="admin-title">Админ.панель</p>
-    <form id="form" method="post" action="/news">
+    <form id="form">
         <input class="input-form" placeholder="Заголовок" name="title" type="text">
-        <textarea class="input-form" placeholder="Текст" name="full_text"></textarea>
         <input class="input-form" placeholder="Картинка" name="img" type="text">
-        <button class="btn-submit" type="submit">submit</button>
+        <textarea class="textarea-form" placeholder="Текст" name="full_text"></textarea>
+        <button class="btn-submit" type="submit">Создать новость</button>
     </form>
     <div class="news-blocks">
     </div>
-
 </div>
+
 <script src="./client/api.js"></script>
 </body>
 </html>
