@@ -31,21 +31,17 @@ font-family: Arial, Helvetica, sans-serif;
 }
 
 .btn-del {
-    border-radius: 100%;
     border: 0;
-    width: 60px;
-    height: 60px;
-    background-color: #ff6f6f;
     color: #ff6f6f;
+    background-color: #fff;
     transition:  0.4s ease 0s;
     cursor: pointer;
     font-weight: 700;
-    font-size: 0.8rem;
+    font-size: 1rem;
 }
 
 .btn-del:hover {
-    background-color: #fff;
-    color: #ff6f6f;
+    color: #a84141;
 }
 
 .admin-title {
@@ -74,8 +70,38 @@ font-family: Arial, Helvetica, sans-serif;
     }
 }
 
+form {
+    display: flex;
+    max-width: 100%;
+    width: 50%;
+    flex-direction: column;
+}
+
+.btn-submit {
+    width: 20%;
+}
+
 .input-form {
     border: 0;
     border-bottom: 1px solid #a1a2a2;
     font-size: 1rem;
+    width: 20%;
+}
+
+.form-changer-block {
+    position: fixed;
+    z-index: 222;
+    top: 50%;
+    left: 50%;
+    width: 500px;
+    min-height: 500px;
+    display: none;
+
+}
+
+.close-form-change {
+    position: relative;
+    bottom: 100px;
+    left: 275px;
+    cursor: pointer;
 }
