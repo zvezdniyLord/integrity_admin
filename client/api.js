@@ -1,5 +1,7 @@
 const newsBlocks = document.querySelector('.news-blocks');
 const btnDelete = document.querySelector('.delete-news');
+const formChanger = document.querySelector('.form-changer-block');
+const closeFormChange = document.querySelector('.close-form-change');
 
 document.addEventListener('DOMContentLoaded', function () {
   const form = document.getElementById('form');
@@ -68,7 +70,7 @@ function createListNews(data) {
   delBtn.addEventListener('click', () => deleteNews(divNewsBlock, data.id));
   delBtn.textContent = 'Удалить';
 
-  textElement.classList.add('text-block')
+  textElement.classList.add('text-block');
 
   divNewsBlock.appendChild(IDElement);
   divNewsBlock.appendChild(titleElement);
@@ -76,9 +78,26 @@ function createListNews(data) {
   divNewsBlock.appendChild(imgElement);
   divNewsBlock.appendChild(delBtn);
   newsBlocks.appendChild(divNewsBlock);
+  changeNews(divNewsBlock, divNewsBlock, data);
 }
 
 
 function resetForm(form) {
   form.reset();
 }
+
+
+function changeNews(root, element, data) {
+  const changeBtn = document.createElement('button');
+  changeBtn.textContent = 'Изменить';
+  root.appendChild(changeBtn);
+  changeBtn.addEventListener('click', (e) => {
+    openModal(formChanger);
+  });
+  console.log(element);
+}
+
+
+const openModal = (modal) => modal.style.display = 'block';
+const closeModal = (modal) => modal.style.display = 'none';
+closeFormChange.addEventListener('click', () => closeModal(formChanger));
