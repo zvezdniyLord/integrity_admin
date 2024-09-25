@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Document</title>
+</head>
+<body>
+
+<div class="news">
+    <p class="admin-title">Админ.панель</p>
+    <form id="form" method="post" action="/news">
+        <input class="input-form" placeholder="Заголовок" name="title" type="text">
+        <textarea class="input-form" placeholder="Текст" name="full_text"></textarea>
+        <input class="input-form" placeholder="Картинка" name="img" type="text">
+        <button class="btn-submit" type="submit">submit</button>
+    </form>
+    <div class="news-blocks">
+    </div>
+
+</div>
+<script src="./client/api.js"></script>
+</body>
+</html>
