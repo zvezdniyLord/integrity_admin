@@ -34,10 +34,11 @@ app.delete('/news/:id', async(req, res) => {
   res.send('delete post');
 });
 
-app.put("/news/:id", async(req, res) => {
+app.put("/news/:id", upload.none(), async(req, res) => {
   const {id} = req.params;
   const {title, full_text, img} = req.body;
   const getUpdatePost = await db.query('update news set title = $1, full_text = $2, img = $3 where id = $4', [title, full_text, img, id]);
+  console.log(req.body);
   res.send('update post');
 })
 
