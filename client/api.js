@@ -2,6 +2,8 @@ const newsBlocks = document.querySelector('.news-blocks');
 const btnDelete = document.querySelector('.delete-news');
 const formChanger = document.querySelector('.form-changer-block');
 const closeFormChange = document.querySelector('.close-form-change');
+const formPut = document.getElementById('form-changer');
+const btnChangeForm = document.querySelector('.btn-change');
 
 document.addEventListener('DOMContentLoaded', function () {
   const form = document.getElementById('form');
@@ -52,6 +54,9 @@ function deleteNews(element, id) {
 
 
 function createListNews(data) {
+  const blockForBtn = document.createElement("div");
+  blockForBtn.classList.add("block-btns");
+
   const divNewsBlock = document.createElement("div");
   divNewsBlock.classList.add('news-block');
 
@@ -76,28 +81,38 @@ function createListNews(data) {
   divNewsBlock.appendChild(titleElement);
   divNewsBlock.appendChild(textElement);
   divNewsBlock.appendChild(imgElement);
-  divNewsBlock.appendChild(delBtn);
+  divNewsBlock.appendChild(blockForBtn);
+  blockForBtn.appendChild(delBtn)
   newsBlocks.appendChild(divNewsBlock);
-  changeNews(divNewsBlock, divNewsBlock, data);
-}
-
-
-function resetForm(form) {
-  form.reset();
-}
-
-
-function changeNews(root, element, data) {
   const changeBtn = document.createElement('button');
   changeBtn.textContent = 'Изменить';
-  root.appendChild(changeBtn);
+  changeBtn.classList.add('change-btn');
+  blockForBtn.appendChild(changeBtn);
   changeBtn.addEventListener('click', (e) => {
-    openModal(formChanger);
+    mapForm(formPut, data)
   });
-  console.log(element);
 }
 
+const resetForm = form => form.reset();
 
 const openModal = (modal) => modal.style.display = 'block';
 const closeModal = (modal) => modal.style.display = 'none';
 closeFormChange.addEventListener('click', () => closeModal(formChanger));
+
+
+function mapForm(form, data) {
+  console.log(data.id);
+  formChanger.style.display = "block";
+
+  form.elements[0].value = data.title;
+  form.elements[1].value = data.full_text;
+  form.elements[2].value = data.img;
+
+  btnChangeForm.addEventListener("submit", (e) => {
+    e.preventDefault();
+    const response = fetch(`http://localhost:3001/news/${data.id}`, {
+      method: "PUT",
+      body: new FormData(form)
+    });
+  });
+}
