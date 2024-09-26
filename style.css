@@ -26,7 +26,7 @@ font-family: Arial, Helvetica, sans-serif;
 
 .news-block > p {
     font-weight: 700;
-    max-width: 25%;
+    max-width: 20%;
     text-align: center;
 }
 
@@ -43,6 +43,7 @@ font-family: Arial, Helvetica, sans-serif;
 .btn-del:hover {
     color: #a84141;
 }
+
 
 .admin-title {
     background: linear-gradient(
@@ -104,4 +105,45 @@ form {
     bottom: 100px;
     left: 275px;
     cursor: pointer;
+}
+
+.block-btns {
+    max-width: 20%;
+    display: flex;
+    justify-content: space-around;
+    width: 20%;
+    flex-wrap: wrap;
+}
+
+.change-btn {
+    color: #277FE7;
+    border: 0;
+    background-color: #fff;
+    transition:  0.4s ease 0s;
+    cursor: pointer;
+    font-weight: 700;
+    font-size: 1rem;
+}
+
+.change-btn:hover {
+    color: #1260be;
+}
+
+
+
+@media only screen and (min-device-width: 320px) and (max-device-width: 460px) {
+    p {
+        font-size: 0.7rem;
+    }
+
+    #form {
+        max-width: 100%;
+        width: 100%;
+    }
+
+    #form > input {
+        margin-top: 1rem;
+        margin-bottom: 1rem;
+    }
+
 }
