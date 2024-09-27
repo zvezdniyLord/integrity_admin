@@ -89,8 +89,10 @@ function createListNews(data) {
   changeBtn.classList.add('change-btn');
   blockForBtn.appendChild(changeBtn);
   changeBtn.addEventListener('click', (e) => {
+    formChanger.style.display = "block";
     mapForm(formPut, data)
   });
+
 }
 
 const resetForm = form => form.reset();
@@ -101,18 +103,18 @@ closeFormChange.addEventListener('click', () => closeModal(formChanger));
 
 
 function mapForm(form, data) {
-  console.log(data.id);
-  formChanger.style.display = "block";
+  formChanger.style.display = "flex";
 
   form.elements[0].value = data.title;
   form.elements[1].value = data.full_text;
   form.elements[2].value = data.img;
 
-  btnChangeForm.addEventListener("submit", (e) => {
+  form.addEventListener('submit', (e) => {
     e.preventDefault();
-    const response = fetch(`http://localhost:3001/news/${data.id}`, {
+    fetch(`http://localhost:3001/news/${data.id}`, {
       method: "PUT",
       body: new FormData(form)
-    });
+    })
   });
+  
 }
