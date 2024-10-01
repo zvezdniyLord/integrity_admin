@@ -8,7 +8,6 @@ const btnChangeForm = document.querySelector('.btn-change');
 document.addEventListener('DOMContentLoaded', function () {
   const form = document.getElementById('form');
   form.addEventListener('submit', formSend);
-
   async function formSend(e) {
     e.preventDefault();
 
@@ -26,7 +25,6 @@ document.addEventListener('DOMContentLoaded', function () {
       }
     }
 });
-
 async function allNews() {
   const response = await fetch('http://localhost:3001/news');
   if(response.ok) {
@@ -54,6 +52,7 @@ function deleteNews(element, id) {
 
 
 function createListNews(data) {
+  console.log(data);
   const blockForBtn = document.createElement("div");
   blockForBtn.classList.add("block-btns");
 
@@ -62,13 +61,15 @@ function createListNews(data) {
 
   const titleElement = document.createElement("p");
   const textElement = document.createElement("p");
-  const imgElement = document.createElement("p");
+  const imgElement = document.createElement("img");
   const IDElement = document.createElement("p");
 
   IDElement.textContent = `ID:${data.id}`;
   titleElement.textContent = data.title;
   textElement.textContent = data.full_text;
-  imgElement.textContent = data.img;
+  //imgElement.textContent = data.img;
+  imgElement.setAttribute('src', `../server/uploads/${data.img}`);
+  imgElement.setAttribute('alt', 'картинка новости');
 
   const delBtn = document.createElement('button');
   delBtn.classList.add('btn-del');
@@ -104,10 +105,8 @@ closeFormChange.addEventListener('click', () => closeModal(formChanger));
 
 function mapForm(form, data) {
   formChanger.style.display = "flex";
-
   form.elements[0].value = data.title;
   form.elements[1].value = data.full_text;
-  form.elements[2].value = data.img;
 
   form.addEventListener('submit', (e) => {
     e.preventDefault();
@@ -116,5 +115,5 @@ function mapForm(form, data) {
       body: new FormData(form)
     })
   });
-  
+
 }

@@ -3,12 +3,23 @@ const app = express();
 const db = require('./db');
 const cors = require("cors");
 const multer = require("multer");
-const upload = multer();
+const upload = multer({dest: "uploads"});
 const PORT = 3001;
 
+const fileConfig = multer.diskStorage({
+  destination: (req, file, cb) => {
+    cb(null, 'uploads')
+  },
+  filename: (req, file, cb) => {
+    cb(null, file.originalname)
+  }
+})
 
+
+app.use(express.static(__dirname));
 app.use(cors());
 app.use(express.json());
+//app.use(multer({storage:fileConfig}).single('filedata'));
 
 app.get('/news', async(req, res) => {
   const news = await db.query(`SELECT * FROM news`);
@@ -21,10 +32,12 @@ app.get('/news/:id', async(req, res) => {
   res.send(getIDNews.rows);
 })
 
-app.post('/news', upload.none(), async(req, res) => {
-  const {title, full_text, img} = req.body;
+app.post('/news', multer({storage:fileConfig}).single('filedata'), async(req, res) => {
+  const {title, full_text} = req.body;
+  let fileData = req.file;
+
   console.log(req.body);
-  const createNewPost = await db.query(`insert into news(title, full_text, img) values($1, $2, $3) RETURNING *`, [title, full_text, img]);
+  const createNewPost = await db.query(`insert into news(title, full_text, img) values($1, $2, $3) RETURNING *`, [title, full_text, fileData.originalname]);
   res.status(201).send(createNewPost.rows);
 });
 
@@ -34,10 +47,11 @@ app.delete('/news/:id', async(req, res) => {
   res.send('delete post');
 });
 
-app.put("/news/:id", upload.none(), async(req, res) => {
+app.put("/news/:id", multer({storage:fileConfig}).single('filedata'), async(req, res) => {
   const {id} = req.params;
-  const {title, full_text, img} = req.body;
-  const getUpdatePost = await db.query('update news set title = $1, full_text = $2, img = $3 where id = $4', [title, full_text, img, id]);
+  const {title, full_text} = req.body;
+  let fileData = req.file;
+  const getUpdatePost = await db.query('update news set title = $1, full_text = $2, img = $3 where id = $4', [title, full_text, fileData.originalname, id]);
   console.log(req.body);
   res.send('update post');
 })
