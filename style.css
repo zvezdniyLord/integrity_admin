@@ -200,6 +200,15 @@ img {
         margin-bottom: 1rem;
     }
 
+    .form-creator {
+        align-items: center;
+        justify-content: center;
+    }
+
+    .admin-title {
+        text-align: center;
+    }
+
     .news-block > p {
         max-width: 100%;
     }
