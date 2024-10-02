@@ -5,6 +5,7 @@ const closeFormChange = document.querySelector('.close-form-change');
 const formPut = document.getElementById('form-changer');
 const btnChangeForm = document.querySelector('.btn-change');
 
+
 document.addEventListener('DOMContentLoaded', function () {
   const form = document.getElementById('form');
   form.addEventListener('submit', formSend);
@@ -64,9 +65,14 @@ function createListNews(data) {
   const imgElement = document.createElement("img");
   const IDElement = document.createElement("p");
 
+  IDElement.classList.add("p-id");
+  titleElement.classList.add('p-title');
+  textElement.classList.add('p-text');
+  imgElement.classList.add('img-block');
+
   IDElement.textContent = `ID:${data.id}`;
-  titleElement.textContent = data.title;
-  textElement.textContent = data.full_text;
+  titleElement.textContent = `Заголовок: ${data.title}`;
+  textElement.textContent = `Текст: ${data.full_text}`;
   //imgElement.textContent = data.img;
   imgElement.setAttribute('src', `../server/uploads/${data.img}`);
   imgElement.setAttribute('alt', 'картинка новости');

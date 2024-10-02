@@ -11,7 +11,7 @@
         <form id="form-changer">
             <input class="input-changer" placeholder="Изменить заголовок" name="title" type="text">
             <textarea class="input-changer" placeholder="Изменить текст" name="full_text" ></textarea>
-            <input type="file" name="filedata" id="">
+            <input type="file"name="filedata" id="">
             <input class="btn-change" type="submit" value="Изменить">
         </form>
         <span class="close-form-change">Закрыть</span>
@@ -20,9 +20,10 @@
     <p class="admin-title">Админ.панель</p>
     <form class="form-creator" id="form">
         <input class="input-form" placeholder="Введите Заголовок" name="title" type="text">
-        <input type="file" name="filedata" id="">
+        <input class="input-file" id="input-file-id" hidden type="file" name="filedata">
+        <label class="label-input-form" for="input-file-id">Выбрать файл</label>
         <textarea class="textarea-form" placeholder="Текст" name="full_text"></textarea>
-        <button class="btn-submit" type="submit">Создать</button>
+        <button class="btn-submit" type="submit">Добавить новость</button>
     </form>
     <div class="news-blocks">
     </div>
