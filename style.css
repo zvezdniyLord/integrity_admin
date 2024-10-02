@@ -161,10 +161,6 @@ form {
     font-size: 1rem;
 }
 
-.input-changer > template {
-    width: 275px;
-    height: 230px;
-}
 
 textarea {
     height: 150px;
