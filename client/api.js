@@ -114,6 +114,7 @@ function mapForm(form, data) {
   form.elements[0].value = data.title;
   form.elements[1].value = data.full_text;
 
+
   form.addEventListener('submit', (e) => {
     e.preventDefault();
     fetch(`http://localhost:3001/news/${data.id}`, {
