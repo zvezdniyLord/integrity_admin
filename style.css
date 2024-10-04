@@ -58,12 +58,21 @@ table {
     color: #515151;
 }
 
-.news-block > p {
+.p-title {
     font-weight: 700;
-    max-width: 50%;
+    width: 20%;
     text-align: center;
 }
 
+.p-text {
+    font-weight: 700;
+    width: 40%;
+    text-align: center;
+}
+
+.img-block {
+    width: 10%;
+}
 
 .btn-del {
     border: 0;
@@ -292,10 +301,6 @@ img {
 
     .admin-title {
         text-align: center;
-    }
-
-    .news-block > p {
-        max-width: 100%;
     }
 
     #form {

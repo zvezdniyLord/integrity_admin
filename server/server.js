@@ -30,13 +30,22 @@ app.get('/news/:id', async(req, res) => {
   const {id} = req.params;
   const getIDNews = await db.query('select * from news where id = $1', [id]);
   res.send(getIDNews.rows);
-})
+});
+
+app.get('/newslast', async(req, res) => {
+  const getLastNews = await db.query('SELECT * FROM news ORDER BY id DESC LIMIT 6');
+  res.send(getLastNews.rows);
+});
+
+/*app.get('/archive', async(req, res) => {
+  const archiveNews = await db.query('select * from news ');
+  res.send(archiveNews.rows);
+})*/
 
 app.post('/news', multer({storage:fileConfig}).single('filedata'), async(req, res) => {
   const {title, full_text} = req.body;
   let fileData = req.file;
-
-  console.log(req.body);
+  console.log(req.file)
   const createNewPost = await db.query(`insert into news(title, full_text, img) values($1, $2, $3) RETURNING *`, [title, full_text, fileData.originalname]);
   res.status(201).send(createNewPost.rows);
 });

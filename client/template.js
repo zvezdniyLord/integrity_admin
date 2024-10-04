@@ -1,6 +1,6 @@
 document.addEventListener('DOMContentLoaded', () => {
 
-    fetch('http://localhost:3001/news').then(resp => resp.json())
+    fetch('http://localhost:3001/newslast').then(resp => resp.json())
     .then(data => data.forEach(d => {
         console.log(d);
         window.localStorage.setItem('id', d.id);
