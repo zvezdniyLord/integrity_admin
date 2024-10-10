@@ -2,7 +2,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
     fetch('http://localhost:3001/newslast').then(resp => resp.json())
     .then(data => data.forEach(d => {
-        console.log(d);
         window.localStorage.setItem('id', d.id);
         document.querySelector("body").insertAdjacentHTML("afterbegin", `
         <a href="../news.html">
@@ -15,8 +14,10 @@ document.addEventListener('DOMContentLoaded', () => {
             </div>
         </a>
         `);
+
     }));
 });
+
 
 function createTemplate(id) {
     localStorage.setItem('id', id);

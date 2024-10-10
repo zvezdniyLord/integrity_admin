@@ -4,14 +4,13 @@ const formChanger = document.querySelector('.form-changer-block');
 const closeFormChange = document.querySelector('.close-form-change');
 const formPut = document.getElementById('form-changer');
 const btnChangeForm = document.querySelector('.btn-change');
-
+const inputTitle = document.querySelector(".input-title");
 
 document.addEventListener('DOMContentLoaded', function () {
   const form = document.getElementById('form');
   form.addEventListener('submit', formSend);
   async function formSend(e) {
     e.preventDefault();
-
     const formData = new FormData(form);
       const response = await fetch('http://localhost:3001/news', {
         method: 'POST',
@@ -113,7 +112,8 @@ function mapForm(form, data) {
   formChanger.style.display = "flex";
   form.elements[0].value = data.title;
   form.elements[1].value = data.full_text;
-
+  console.log(form.elements[2].value);
+  console.log(data.img);
 
   form.addEventListener('submit', (e) => {
     e.preventDefault();

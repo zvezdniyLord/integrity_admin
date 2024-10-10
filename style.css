@@ -279,6 +279,8 @@ img {
     display: none;
 }
 
+
+
 @media only screen and (min-device-width: 320px) and (max-device-width: 460px) {
     .news-block {
         font-size: 0.7rem;
@@ -293,10 +295,22 @@ img {
         margin-bottom: 1rem;
     }
 
+    .p-title {
+        width: 50%;
+    }
+
+    .img-block {
+        width: 30%;
+    }
+
     .form-creator {
         align-items: center;
         justify-content: center;
         margin-left: 0;
+    }
+
+    .input-changer {
+        height: 20%;
     }
 
     .admin-title {
@@ -311,6 +325,10 @@ img {
     #form > input {
         margin-top: 1rem;
         margin-bottom: 1rem;
+    }
+
+    #form-changer {
+        width: 80%;
     }
 
     .form-changer-block {

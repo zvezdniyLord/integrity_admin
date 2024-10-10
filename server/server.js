@@ -37,15 +37,18 @@ app.get('/newslast', async(req, res) => {
   res.send(getLastNews.rows);
 });
 
-/*app.get('/archive', async(req, res) => {
-  const archiveNews = await db.query('select * from news ');
+app.get('/archive', async(req, res) => {
+  const archiveNews = await db.query(
+    'SELECT * FROM news WHERE id NOT IN ( SELECT id FROM news ORDER BY id DESC LIMIT 6) ORDER BY id;');
   res.send(archiveNews.rows);
-})*/
+})
 
 app.post('/news', multer({storage:fileConfig}).single('filedata'), async(req, res) => {
   const {title, full_text} = req.body;
   let fileData = req.file;
-  console.log(req.file)
+  if(title.length === 0 || full_text.length === 0) {
+    return res.status(400).send("пустые поля");
+  }
   const createNewPost = await db.query(`insert into news(title, full_text, img) values($1, $2, $3) RETURNING *`, [title, full_text, fileData.originalname]);
   res.status(201).send(createNewPost.rows);
 });
@@ -64,6 +67,8 @@ app.put("/news/:id", multer({storage:fileConfig}).single('filedata'), async(req,
   console.log(req.body);
   res.send('update post');
 });
+
+
 
 
 app.listen(PORT, () => console.log(`start:${PORT}`))
