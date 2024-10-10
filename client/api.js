@@ -9,7 +9,9 @@ const inputTitle = document.querySelector(".input-title");
 document.addEventListener('DOMContentLoaded', function () {
   const form = document.getElementById('form');
   form.addEventListener('submit', formSend);
+
   async function formSend(e) {
+    console.log(e)
     e.preventDefault();
     const formData = new FormData(form);
       const response = await fetch('http://localhost:3001/news', {
@@ -116,6 +118,7 @@ function mapForm(form, data) {
   console.log(data.img);
 
   form.addEventListener('submit', (e) => {
+    console.log(e);
     e.preventDefault();
     fetch(`http://localhost:3001/news/${data.id}`, {
       method: "PUT",

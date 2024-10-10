@@ -64,6 +64,7 @@ app.put("/news/:id", multer({storage:fileConfig}).single('filedata'), async(req,
   const {title, full_text} = req.body;
   let fileData = req.file;
   const getUpdatePost = await db.query('update news set title = $1, full_text = $2, img = $3 where id = $4', [title, full_text, fileData.originalname, id]);
+  console.log('put method');
   console.log(req.body);
   res.send('update post');
 });
