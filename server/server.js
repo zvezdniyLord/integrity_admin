@@ -56,7 +56,7 @@ app.post('/news', multer({storage:fileConfig}).single('filedata'), async(req, re
 app.delete('/news/:id', async(req, res) => {
   const {id} = req.params;
   const delPost = await db.query(`delete from news where id = $1`, [id]);
-  res.send('delete post');
+  res.status(200).send('delete post');
 });
 
 app.put("/news/:id", multer({storage:fileConfig}).single('filedata'), async(req, res) => {
@@ -64,9 +64,8 @@ app.put("/news/:id", multer({storage:fileConfig}).single('filedata'), async(req,
   const {title, full_text} = req.body;
   let fileData = req.file;
   const getUpdatePost = await db.query('update news set title = $1, full_text = $2, img = $3 where id = $4', [title, full_text, fileData.originalname, id]);
-  console.log('put method');
-  console.log(req.body);
-  res.send('update post');
+  console.log(getUpdatePost);
+  res.status(200).send('update post');
 });
 
 

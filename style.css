@@ -275,6 +275,11 @@ img {
     margin-left: 2rem;
 }
 
+.form-creator > input {
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+}
+
 .p-id {
     display: none;
 }
